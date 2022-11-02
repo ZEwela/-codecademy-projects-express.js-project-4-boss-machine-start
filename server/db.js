@@ -86,6 +86,7 @@ const isValidMinion = (instance) => {
   instance.name = instance.name || '';
   instance.weaknesses = instance.weaknesses || '';
   instance.title = instance.title || '';
+  
   if (typeof instance.name !== 'string' || typeof instance.weaknesses !== 'string'
   || typeof instance.title !== 'string') {
     throw new Error('Minion\'s name, title, and weaknesses must be strings');
@@ -230,6 +231,8 @@ const updateInstanceInDatabase = (modelType, instance) => {
   const instanceIndex = model.data.findIndex((element) => {
     return element.id === instance.id;
   });
+
+ 
   if (instanceIndex > -1 && model.isValid(instance)) {
     model.data[instanceIndex] = instance;
     return model.data[instanceIndex];
@@ -271,4 +274,6 @@ module.exports = {
   updateInstanceInDatabase,
   deleteFromDatabasebyId,
   deleteAllFromDatabase,
+  allWork,
+  createWork
 };
